@@ -1,5 +1,6 @@
-import NextImage from "next/image";
-import NextLink from "next/link";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import NextImage from 'next/image'
+import NextLink from 'next/link'
 import {
   Box,
   ListItem,
@@ -8,9 +9,9 @@ import {
   // Center,
   LinkBox,
   ListIcon,
-} from "@chakra-ui/layout";
+} from '@chakra-ui/layout'
 
-import { Link } from "@chakra-ui/react";
+import { Link } from '@chakra-ui/react'
 import {
   MdHome,
   MdSearch,
@@ -18,44 +19,44 @@ import {
   MdPlaylistAdd,
   // MdPlayArrow,
   MdFavorite,
-} from "react-icons/md";
-import { usePlaylist } from "../lib/hooks";
+} from 'react-icons/md'
+import { usePlaylist } from '../lib/hooks'
 
 const navMenu = [
   {
-    name: "Home",
+    name: 'Home',
     icon: MdHome,
-    route: "/",
+    route: '/',
   },
   {
-    name: "Search",
+    name: 'Search',
     icon: MdSearch,
-    route: "/search",
+    route: '/search',
   },
   {
-    name: "Library",
+    name: 'Library',
     icon: MdLibraryMusic,
-    route: "/library",
+    route: '/library',
   },
-];
+]
 
 const musicMenu = [
   {
-    name: "Create Playlist",
+    name: 'Create Playlist',
     icon: MdPlaylistAdd,
-    route: "/",
+    route: '/',
   },
   {
-    name: "Favourites",
+    name: 'Favourites',
     icon: MdFavorite,
-    route: "/library",
+    route: '/library',
   },
-];
+]
 
 // const playLists = new Array(30).fill(1).map((_, i) => `Playlist ${i + 1}`);
 
 const SideBar = () => {
-  const { playlists } = usePlaylist();
+  const { playlists } = usePlaylist()
 
   return (
     <Box
@@ -87,7 +88,7 @@ const SideBar = () => {
                     </NextLink>
                   </LinkBox>
                 </ListItem>
-              );
+              )
             })}
           </List>
         </Box>
@@ -110,7 +111,7 @@ const SideBar = () => {
                     </NextLink>
                   </LinkBox>
                 </ListItem>
-              );
+              )
             })}
           </List>
         </Box>
@@ -131,13 +132,13 @@ const SideBar = () => {
                     <Link>{playlist.name}</Link>
                   </NextLink>
                 </ListItem>
-              );
+              )
             })}
           </List>
         </Box>
       </Box>
     </Box>
-  );
-};
+  )
+}
 
-export default SideBar;
+export default SideBar

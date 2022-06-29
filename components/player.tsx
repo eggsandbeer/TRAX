@@ -198,6 +198,7 @@ const Player = ({ songs, activeSong }) => {
             </Box>
             <Box width="80%">
               <RangeSlider
+                // eslint-disable-next-line jsx-a11y/aria-proptypes
                 aria-label={['min', 'max']}
                 step={0.1}
                 id="player-range"

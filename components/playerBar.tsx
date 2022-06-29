@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import {
   // ButtonGroup,
   Box,
@@ -9,7 +8,6 @@ import {
   // Center,
   Flex,
   Text,
-  Spacer,
 } from '@chakra-ui/react'
 import { useStoreState, useStoreActions } from 'easy-peasy'
 import Player from './player'
@@ -22,9 +20,7 @@ const PlayerBar = () => {
 
   // const [volume, setVolume] = useState([0.05])
 
-  const handleVolumeChange = (e) => {
-    setVolume(e)
-  }
+  const handleVolumeChange = (e) => setVolume(e)
 
   return (
     <Box width="100vw" bg="gray.900" padding="5px" height="120px">
@@ -47,15 +43,13 @@ const PlayerBar = () => {
                     0
                   </Text>
                   <RangeSlider
+                    // eslint-disable-next-line jsx-a11y/aria-proptypes
                     aria-label={['volume-min', 'volume-max']}
                     step={0.01}
                     id="volume-range"
                     min={0}
                     max={0.99}
-                    onChange={(e) => {
-                      // console.log(e)
-                      setVolume(e)
-                    }}
+                    onChange={handleVolumeChange}
                     value={volume}
                     // onChangeStart={() => setIsSeeking(true)}
                     // onChangeEnd={() => setIsSeeking(false)}
