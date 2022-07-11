@@ -1,28 +1,26 @@
-import { Box, Flex, Input, Button } from "@chakra-ui/react";
-import NextImage from "next/image";
-import { useRouter } from "next/router";
+import { Box, Flex, Input, Button, Divider } from '@chakra-ui/react'
+import NextImage from 'next/image'
+import { useRouter } from 'next/router'
 // import { useSWRConfig } from "swr";
-import { FC, useState } from "react";
-import { auth } from "../lib/mutations";
+import { FC, useState } from 'react'
+import { auth } from '../lib/mutations'
 
-const AuthForm: FC<{ mode: "signin" | "signup" }> = ({ mode }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
+const AuthForm: FC<{ mode: 'signin' | 'signup' }> = ({ mode }) => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter()
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    const user = await auth(mode, { email, password });
-
-    console.log(user);
-
-    setIsLoading(false);
-
-    router.push("/");
-  };
+    e.preventDefault()
+    setIsLoading(true)
+    await auth(mode, { email, password, firstName, lastName })
+    // console.log(user)
+    setIsLoading(false)
+    router.push('/')
+  }
 
   return (
     <Box bg="black" height="100vh" width="100vw" color="white">
@@ -47,7 +45,7 @@ const AuthForm: FC<{ mode: "signin" | "signup" }> = ({ mode }) => {
               placeholder="email"
               type="email"
               onChange={(e) => {
-                setEmail(e.target.value);
+                setEmail(e.target.value)
               }}
               marginBottom="5px"
             />
@@ -55,17 +53,39 @@ const AuthForm: FC<{ mode: "signin" | "signup" }> = ({ mode }) => {
               placeholder="password"
               type="password"
               onChange={(e) => {
-                setPassword(e.target.value);
+                setPassword(e.target.value)
               }}
               marginBottom="5px"
             />
+            {mode === 'signup' && (
+              <Box>
+                <Divider marginTop="10px" marginBottom="15px" />
+                <Input
+                  placeholder="firstname"
+                  type="text"
+                  onChange={(e) => {
+                    setFirstName(e.target.value)
+                  }}
+                  marginBottom="5px"
+                />
+
+                <Input
+                  placeholder="lastname"
+                  type="text"
+                  onChange={(e) => {
+                    setLastName(e.target.value)
+                  }}
+                  marginBottom="5px"
+                />
+              </Box>
+            )}
             <Button
               type="submit"
               bg="green.500"
               isLoading={isLoading}
               sx={{
-                "&:hover": {
-                  bg: "green.300",
+                '&:hover': {
+                  bg: 'green.300',
                 },
               }}
             >
@@ -75,7 +95,7 @@ const AuthForm: FC<{ mode: "signin" | "signup" }> = ({ mode }) => {
         </Box>
       </Flex>
     </Box>
-  );
-};
+  )
+}
 
-export default AuthForm;
+export default AuthForm

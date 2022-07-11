@@ -10,6 +10,7 @@ import {
   LinkBox,
   ListIcon,
 } from '@chakra-ui/layout'
+// import { useRouter } from 'next/router'
 
 import { Link } from '@chakra-ui/react'
 import {
@@ -20,6 +21,7 @@ import {
   // MdPlayArrow,
   MdFavorite,
 } from 'react-icons/md'
+import { FaDoorOpen } from 'react-icons/fa'
 import { usePlaylist } from '../lib/hooks'
 
 const navMenu = [
@@ -55,8 +57,14 @@ const musicMenu = [
 
 // const playLists = new Array(30).fill(1).map((_, i) => `Playlist ${i + 1}`);
 
+// function deleteCookie() {
+//   document.cookie =
+//     'TRAX_ACCESS_TOKEN=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+// }
+
 const SideBar = () => {
   const { playlists } = usePlaylist()
+  // const router = useRouter()
 
   return (
     <Box
@@ -116,7 +124,7 @@ const SideBar = () => {
           </List>
         </Box>
         <Divider color="gray.700" marginBottom="20px" />
-        <Box height="66%" overflowY="auto" marginBottom="20px">
+        <Box overflowY="auto" marginBottom="20px">
           <List spacing={2}>
             {playlists.map((playlist) => {
               return (
@@ -134,6 +142,26 @@ const SideBar = () => {
                 </ListItem>
               )
             })}
+          </List>
+        </Box>
+        <Box position="absolute" bottom="30px">
+          <List spacing={2}>
+            <ListItem
+              paddingX="20px"
+              fontSize="sm"
+              // onClick={() => {
+              //   console.log('handle them clicks')
+              //   deleteCookie()
+              //   router.push('/signin')
+              // }}
+            >
+              <NextLink href="/logout">
+                <Link>
+                  <ListIcon as={FaDoorOpen} color="white" marginRight="5px" />
+                  Sign Out
+                </Link>
+              </NextLink>
+            </ListItem>
           </List>
         </Box>
       </Box>

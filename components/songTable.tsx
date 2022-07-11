@@ -20,8 +20,6 @@ const SongTable = ({ songs }) => {
 
   const activeSong = useStoreState((state: any) => state.activeSong)
 
-  console.log(activeSong)
-
   return (
     <Box bg="transparent" color="white">
       <Box padding="10px" marginBottom="20px">
